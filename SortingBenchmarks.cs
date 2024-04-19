@@ -12,10 +12,10 @@ namespace Lab3
     [MarkdownExporter, AsciiDocExporter, HtmlExporter, CsvExporter]
     public class SortingBenchmarks
 	{
-        [Params(1000, 10_000, 100_000,1_000_000,10_000_000, Priority = -1)]
+        [Params(1000,10_000, 100_000, 1_000_000, Priority = -1)]
         public int N;
 
-        [Params(OrderingType.Random, OrderingType.Reversed, OrderingType.NearlySorted, Priority = -3) ]
+        [Params(OrderingType.Reversed, OrderingType.NearlySorted, Priority = -3) ]
         public OrderingType orderingType;
 
         private List<int> list;
@@ -102,7 +102,7 @@ namespace Lab3
             quickSort.Sort(ref list);
         }
 
-        [Benchmark]
+        //[Benchmark]
         public void CountingSort()
         {
             CountingSort countingSort = new CountingSort();
@@ -110,7 +110,7 @@ namespace Lab3
             countingSort.Sort(array);
         }
 
-        [Benchmark]
+        //[Benchmark]
         public void RadixSort()
         {
             RadixSort radixSort = new RadixSort();
