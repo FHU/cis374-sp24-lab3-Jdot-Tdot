@@ -12,10 +12,10 @@ namespace Lab3
     [MarkdownExporter, AsciiDocExporter, HtmlExporter, CsvExporter]
     public class SortingBenchmarks
 	{
-        [Params(1000, 10_000, 100_000,1_000_000,10_000_000)]
+        [Params(1000, 10_000, 100_000,1_000_000,10_000_000, Priority = -1)]
         public int N;
 
-        [Params(OrderingType.Random)]
+        [Params(OrderingType.Random, OrderingType.Reversed, OrderingType.NearlySorted, Priority = -3) ]
         public OrderingType orderingType;
 
         private List<int> list;
@@ -70,7 +70,7 @@ namespace Lab3
             list[index2] = temp;
         }
 
-        [Benchmark]
+        //[Benchmark]
         public void InsertionSort()
         {
             InsertionSort<int> insertionSort = new InsertionSort<int>();
@@ -78,12 +78,28 @@ namespace Lab3
             insertionSort.Sort(ref list);
         }
 
-        [Benchmark]
+        //[Benchmark]
         public void BubbleSort()
         {
             BubbleSort<int> bubbleSort = new BubbleSort<int>();
 
             bubbleSort.Sort(ref list);
+        }
+
+        [Benchmark]
+        public void HeapSort()
+        {
+            HeapSort<int> heapSort = new HeapSort<int>();
+
+            heapSort.Sort(ref list);
+        }
+
+        [Benchmark]
+        public void QuickSort()
+        {
+            QuickSort<int> quickSort = new QuickSort<int>();
+
+            quickSort.Sort(ref list);
         }
 
         [Benchmark]
